@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class PostsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            UsersTableSeeder::class,
-            PostsTableSeeder::class,
-        ]);
+        factory(Post::class, 100)->create();
     }
 }

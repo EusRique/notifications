@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('user_id'); // User commeted
-            $table->string('title')->unique();
+            $table->string('title');
             $table->text('body');
             $table->timestamps();
 

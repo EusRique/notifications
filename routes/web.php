@@ -1,5 +1,6 @@
 <?php
 
+$this->post('comment', 'Posts\CommentController@store')->name('comment.store');
 $this->resource('posts', 'Posts\PostController');
 
 Route::get('/', function () {

@@ -1,5 +1,7 @@
 <?php
 
+$this->get('notifications', 'NotificationController@notifications')->name('notifications');
+
 $this->post('comment', 'Posts\CommentController@store')->name('comment.store');
 $this->resource('posts', 'Posts\PostController');
 

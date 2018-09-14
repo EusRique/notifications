@@ -15,7 +15,8 @@ window.Vue = require('vue');
  * 
  */
 
- Vue.component('notifications', require('./components/notifications/Notifications'))
+ Vue.component('notifications', require('./components/notifications/Notifications'));
+ Vue.component('notification', require('./components/notifications/Notification'));
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 

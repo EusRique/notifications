@@ -17,5 +17,9 @@ export default {
                 }
             )
         },
+
+        markAsRead (context, params) {
+            axios.put('/notification-read', params)
+        }
     }
 }

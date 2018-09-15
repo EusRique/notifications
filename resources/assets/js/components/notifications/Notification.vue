@@ -1,5 +1,7 @@
 <template>
     <a class="dropdown-item" href="#">
+        <span @click.prevent="markAsRead(notification.id)">Lida</span>
+
         {{comment.user.name}} comentou {{comment.title }}
     </a>
 
@@ -11,7 +13,13 @@
 
         computed: {
             comment() {
-                return this.notification.comment
+                return this.notification.data.comment
+            }
+        },
+
+        methods: {
+            markAsRead (idNotification) {
+                this.$store.dispatch('markAsRead', {id: idNotification})
             }
         }
     }

@@ -6,6 +6,11 @@ export default {
     mutations: {
         LOAD_NOTIFICATIONS (state, notifications) {
             state.items = notifications
+        },
+
+        MARK_AS_READ (state, id) {
+            let index = state.items.filter(notification => notification.id == id)
+            state.items.splice(index, 1)
         }
     },
 
@@ -20,6 +25,7 @@ export default {
 
         markAsRead (context, params) {
             axios.put('/notification-read', params)
+                .then(() => context.commit('MARK_AS_READ', params.id))
         }
     }
 }

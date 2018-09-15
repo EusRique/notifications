@@ -44164,6 +44164,12 @@ var index_esm = {
     mutations: {
         LOAD_NOTIFICATIONS: function LOAD_NOTIFICATIONS(state, notifications) {
             state.items = notifications;
+        },
+        MARK_AS_READ: function MARK_AS_READ(state, id) {
+            var index = state.items.filter(function (notification) {
+                return notification.id == id;
+            });
+            state.items.splice(index, 1);
         }
     },
 
@@ -44174,7 +44180,9 @@ var index_esm = {
             });
         },
         markAsRead: function markAsRead(context, params) {
-            axios.put('/notification-read', params);
+            axios.put('/notification-read', params).then(function () {
+                return context.commit('MARK_AS_READ', params.id);
+            });
         }
     }
 });

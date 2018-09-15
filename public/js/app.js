@@ -44170,6 +44170,9 @@ var index_esm = {
                 return notification.id == id;
             });
             state.items.splice(index, 1);
+        },
+        MARK_ALL_AS_READ: function MARK_ALL_AS_READ(state) {
+            state.items = [];
         }
     },
 
@@ -44182,6 +44185,11 @@ var index_esm = {
         markAsRead: function markAsRead(context, params) {
             axios.put('/notification-read', params).then(function () {
                 return context.commit('MARK_AS_READ', params.id);
+            });
+        },
+        markAllAsRead: function markAllAsRead(context) {
+            axios.put('/notification-all-read').then(function () {
+                return context.commit('MARK_ALL_AS_READ');
             });
         }
     }
@@ -44283,6 +44291,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         notifications: function notifications() {
             return this.$store.state.notifications.items;
         }
+    },
+
+    methods: {
+        markAllAsRead: function markAllAsRead() {
+            this.$store.dispatch('markAllAsRead');
+        }
     }
 });
 
@@ -44326,9 +44340,20 @@ var render = function() {
             })
           }),
           _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("\n                Limpar Notificações\n            ")
-          ])
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-item",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.markAllAsRead($event)
+                }
+              }
+            },
+            [_vm._v("\n                Limpar Notificações\n            ")]
+          )
         ],
         2
       )
